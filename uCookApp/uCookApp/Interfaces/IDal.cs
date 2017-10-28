@@ -10,8 +10,9 @@ namespace uCookApp.Interfaces
     public interface IDal<TItem>
     {
         TItem FetchItem(int id);
+        List<TItem> FetchAllItems();
         void DeleteItem(int id);
-        TItem PutItem(int id);
-        void CreateItem(TItem obj);
+        bool UpdateItem(TItem id);
+        bool CreateItem(TItem obj);
     }
 }

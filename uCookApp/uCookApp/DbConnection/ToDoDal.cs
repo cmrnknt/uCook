@@ -16,40 +16,38 @@ namespace uCookApp.DbConnection
             _baseDal = baseDal;
         }
 
-        public void CreateItem(ToDo obj)
+        public bool CreateItem(ToDo obj)
         {
-            _baseDal.WriteToDB(obj);
+            return _baseDal.WriteToDB(obj);
         }
 
         public void DeleteItem(int id)
         {
-            throw new NotImplementedException();
+            _baseDal.MarkAsDeleted(id);
         }
 
-        public ToDo PutItem(int id)
+        public bool UpdateItem(ToDo obj)
         {
-            throw new NotImplementedException();
+            return _baseDal.WriteToDB(obj);
         }
 
         public ToDo FetchItem(int id)
         {
-            var dbReader = _baseDal.ReadFromDB(id);
-            dbReader.Read();
-            if (dbReader.HasRows)
+            var mappedObject = _baseDal.ReadFromDB(id);
+            if (mappedObject != null)
             {
-                return new ToDo()
-                {
-                    Id = dbReader.GetInt32(0),
-                    Summary = dbReader.GetString(1),
-                    Title = dbReader.GetString(2),
-                    DateCompleted = dbReader.GetDateTime(3)
-                };
+                return mappedObject;
             }
             else
             {
                 return null;
             }
 
+        }
+
+        public List<ToDo> FetchAllItems()
+        {
+            return _baseDal.ReadAllRowsFromDB();
         }
     }
 }

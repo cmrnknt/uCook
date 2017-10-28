@@ -30,7 +30,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>.\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -360,6 +360,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ToDoController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Converters\ToDoMapper.cs" />
     <Compile Include="DbConnection\BaseDal.cs" />
     <Compile Include="DbConnection\ToDoDal.cs" />
     <Compile Include="DbConnection\ToDoItemWriteParameters.cs" />
@@ -369,11 +370,15 @@
     <Compile Include="Interfaces\IBaseDal.cs" />
     <Compile Include="Interfaces\IDal.cs" />
     <Compile Include="Interfaces\IDalWriteParameters.cs" />
+    <Compile Include="Interfaces\IMapReader.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BaseItem.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ToDoError.cs" />
+    <Compile Include="Models\ToDoNotFound.cs" />
     <Compile Include="Models\ToDo.cs" />
+    <Compile Include="Models\ToDoList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />

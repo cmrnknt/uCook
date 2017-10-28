@@ -63,3 +63,4 @@ C:\Users\cmrnk\Desktop\uCook\uCook\uCookApp\uCookApp.Tests\bin\Debug\Microsoft.O
 C:\Users\cmrnk\Desktop\uCook\uCook\uCookApp\uCookApp.Tests\obj\Debug\uCookApp.Tests.csprojResolveAssemblyReference.cache
 C:\Users\cmrnk\Desktop\uCook\uCook\uCookApp\uCookApp.Tests\obj\Debug\uCookApp.Tests.dll
 C:\Users\cmrnk\Desktop\uCook\uCook\uCookApp\uCookApp.Tests\obj\Debug\uCookApp.Tests.pdb
+C:\Users\cmrnk\Desktop\uCook\uCook\uCookApp\uCookApp.Tests\bin\Debug\uCookApp.xml

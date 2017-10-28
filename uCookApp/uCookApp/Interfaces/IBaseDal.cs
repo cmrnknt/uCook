@@ -10,9 +10,9 @@ namespace uCookApp.Interfaces
 {
     public interface IBaseDal<TItem>
     {
-        SqlDataReader ReadFromDB(int id);
-        SqlDataReader ReadAllRowsFromDB();
-        void WriteToDB(TItem obj);
+        TItem ReadFromDB(int id);
+        List<TItem> ReadAllRowsFromDB();
+        bool WriteToDB(TItem obj);
         void MarkAsDeleted(int id);
 
     }
