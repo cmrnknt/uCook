@@ -15,7 +15,7 @@ namespace uCookApp.Models
         public string ToJson()
         {
             //Replace with an actual ToJson method
-            return String.Format("{0},{1},{2},{3}", Id, Title, Summary, DateCompleted);
+            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
         }
     }
 }

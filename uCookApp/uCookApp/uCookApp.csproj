@@ -356,10 +356,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Constants\SettingKeyNames.cs" />
     <Compile Include="Constants\TableNames.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ToDoController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Converters\ToDoMapper.cs" />
     <Compile Include="DbConnection\BaseDal.cs" />
     <Compile Include="DbConnection\ToDoDal.cs" />
