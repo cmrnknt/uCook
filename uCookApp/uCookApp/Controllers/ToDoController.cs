@@ -26,7 +26,7 @@ namespace uCookApp.Controllers
             List<ToDo> castedResponse = response as List<ToDo>;
             if (castedResponse == null)
             {
-                return new List<string>() { "Not Found!" };//MustDO: Do JSON Error here
+                return new List<string>() { "Not Found!" };//Error here
             }
             ToDoList output = new ToDoList() { Items = castedResponse };
             return output.ToJson();
@@ -39,7 +39,7 @@ namespace uCookApp.Controllers
             ToDo castedResponse = response as ToDo;
             if (castedResponse == null)
             {
-                return "Not Found!";//MustDO: Do JSON Error here
+                return "Not Found!";//Error here
             }
             return castedResponse.ToJson();
         }
@@ -48,6 +48,7 @@ namespace uCookApp.Controllers
         public void Post([FromBody]string value)
         {
             //For Creates
+            //MustDO: Post method
             ToDo toCreate = new ToDo()
             {
                 Title = "",
@@ -55,7 +56,6 @@ namespace uCookApp.Controllers
                 DateCompleted = DateTime.Now,
             };
             _dal.CreateItem(toCreate);
-            //MustDO: Post method
         }
 
         // PUT: api/ToDo/5 
