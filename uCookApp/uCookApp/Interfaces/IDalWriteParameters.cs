@@ -9,5 +9,6 @@ namespace uCookApp.Interfaces
     public interface IDalWriteParameters<TItem>
     {
         string GenerateParameters(TItem obj);
+        string UpdateParameters(TItem obj);
     }
 }

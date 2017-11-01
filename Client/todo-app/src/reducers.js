@@ -14,10 +14,11 @@ function todos(state = [], action) {
       return [
         ...state,
         {  
-          text: action.payload,
-          completed: null}
-        
-        
+          id: action.payload.id,
+          title: action.payload.title,
+          summary: action.payload.summary,
+          dateCompleted: action.payload.dateCompleted
+        }
       ]
     case GET_ALL_TODOS:
       return [

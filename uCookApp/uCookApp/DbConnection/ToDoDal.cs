@@ -16,9 +16,16 @@ namespace uCookApp.DbConnection
             _baseDal = baseDal;
         }
 
-        public bool CreateItem(ToDo obj)
+        public ToDo CreateItem(ToDo obj)
         {
-            return _baseDal.WriteToDB(obj);
+            //in a stored proc I would just make the one query to the db which returns the object that was created 
+            //(or just gets the id of the object which can be riskier if the project grows).
+            int createdId = _baseDal.WriteToDB(obj);
+            if (createdId > 0)
+            {
+                return FetchItem(createdId);
+            }
+            return null;
         }
 
         public void DeleteItem(int id)
@@ -26,9 +33,14 @@ namespace uCookApp.DbConnection
             _baseDal.MarkAsDeleted(id);
         }
 
-        public bool UpdateItem(ToDo obj)
+        public ToDo UpdateItem(ToDo obj)
         {
-            return _baseDal.WriteToDB(obj);
+            int createdId = _baseDal.UpdateRowInDB(obj);
+            if (createdId > 0)
+            {
+                return FetchItem(createdId);
+            }
+            return null;
         }
 
         public ToDo FetchItem(int id)

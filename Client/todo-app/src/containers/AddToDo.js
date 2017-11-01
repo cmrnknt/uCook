@@ -1,42 +1,46 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addToDo, getAllToDos } from '../actions'
 import axios from 'axios'
 
+import { addToDo, getAllToDos } from '../actions'
+
 class AddToDo extends Component {
-    
-    
-componentWillMount() {
-    let self = this
-    axios.get('http://localhost:52554/api/todo')
-         .then(function (response) {
-            let data = response && response.data //&& is for if not null
-            self.props.dispatch(getAllToDos(data))
-        }) 
-        .catch(function (error) {
-            console.log(error);
-        });
+
+  submitForm(values) {
+      console.log(JSON.stringify( values))
+    axios.post('http://localhost:52554/api/todo', JSON.stringify(values)) //UPDATE URL
+    .then(function(response) {
+        let data = response && response.data //&& is for if not null
+        this.props.dispatch(addToDo(data))
+    }) 
+    .catch(function (error) {
+        console.log(error);
+    });
   }
 
     render() {
         let { dispatch } = this.props
-        let input
+        let title
+        let summary
 
         return (
             <div> 
                 <form
-                onSubmit={e => {
-                    e.preventDefault()
-                    if (!input.value.trim()) {
-                    return
-                    }
-                    dispatch(addToDo(input.value))
-                    input.value = ''
-                }}
+                    onSubmit={e => {
+                        e.preventDefault()
+                        this.submitForm({title: title.value, summary: summary.value})
+                        title.value = ''
+                        summary.value = ''
+                    }}
                 >
-                <input
-                    ref={node => {
-                    input = node
+                Title: <input
+                    ref={value => {
+                        title = value
+                    }}
+                />
+                Summary: <input
+                    ref={value => {
+                        summary = value
                     }}
                 />
                 <button type="submit">
@@ -57,4 +61,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
 AddToDo = connect(null, mapDispatchToProps)(AddToDo)
 
-export default AddToDo
+export default  AddToDo 

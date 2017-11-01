@@ -12,7 +12,7 @@ namespace uCookApp.Interfaces
         TItem FetchItem(int id);
         List<TItem> FetchAllItems();
         void DeleteItem(int id);
-        bool UpdateItem(TItem id);
-        bool CreateItem(TItem obj);
+        TItem UpdateItem(TItem id);
+        TItem CreateItem(TItem obj);
     }
 }

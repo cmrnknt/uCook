@@ -4,8 +4,8 @@ export const UPDATE_TODO = 'UPDATE_TODO'
 export const DELETE_TODO = 'DELETE_TODO'
 export const GET_ALL_TODOS = 'GET_ALL_TODOS'
 
-export function addToDo(text) {
-  return { type: ADD_TODO, payload: text }
+export function addToDo(values) {
+  return { type: ADD_TODO, payload: values}
 }
 
 export function markToDoAsCompleted(index){

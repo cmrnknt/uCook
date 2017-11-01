@@ -1,10 +1,7 @@
 import React from 'react'
 
-const ToDo = ({ onClick, item }) => (
-  <li
-    onClick={onClick}
-  >
-    {console.log(item)}
+const CurrentToDo = ({ item }) => (
+  <li>
     <p>
       <label><b>Id:</b> </label> {item.Id}|
       <label>   <b>Title:</b> </label> {item.Title}|
@@ -14,4 +11,4 @@ const ToDo = ({ onClick, item }) => (
   </li>
 )
 
-export default ToDo
+export default CurrentToDo

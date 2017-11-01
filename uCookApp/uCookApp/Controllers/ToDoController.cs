@@ -33,44 +33,52 @@ namespace uCookApp.Controllers
         }
 
         // GET: api/ToDo/5
-        public string Get(int id)
+        public ToDo Get(int id)
         {
             var response = _dal.FetchItem(id);
             ToDo castedResponse = response as ToDo;
             if (castedResponse == null)
             {
-                return "Not Found!";//Error here
+                return null;//Error here
             }
-            return castedResponse.ToJson();
+            return castedResponse;
         }
 
         // POST: api/ToDo
-        public void Post([FromBody]string value)
+        public ToDo Post([FromBody]string value)
         {
-            //For Creates
-            //MustDO: Post method
-            ToDo toCreate = new ToDo()
+            if (value == null)
+                return null;
+            ToDo convertedObj;
+            try
             {
-                Title = "",
-                Summary = "",
-                DateCompleted = DateTime.Now,
-            };
-            _dal.CreateItem(toCreate);
+                convertedObj = Newtonsoft.Json.JsonConvert.DeserializeObject<ToDo>(value);
+                ToDo createdItem = _dal.CreateItem(convertedObj);
+                return createdItem;
+            }
+            catch (Exception)
+            {
+                return null;
+                //handle error
+            }
         }
 
         // PUT: api/ToDo/5 
-        public void Put(int id, [FromBody]string value)
+        public ToDo Put([FromBody]string value)
         {
-            //For Updates
-            //MustDO: Put method
-            ToDo toUpdate = new ToDo()
+            if (value == null)
+                return null;
+            ToDo convertedObj;
+            try
             {
-                Id=id,
-                Title="",
-                Summary="",
-                DateCompleted = DateTime.Now,                
-            };
-            _dal.UpdateItem(toUpdate);
+                convertedObj = Newtonsoft.Json.JsonConvert.DeserializeObject<ToDo>(value);
+                return _dal.UpdateItem(convertedObj);
+            }
+            catch (Exception)
+            {
+                return null;
+                //handle error
+            }
         }
 
         // DELETE: api/ToDo/5

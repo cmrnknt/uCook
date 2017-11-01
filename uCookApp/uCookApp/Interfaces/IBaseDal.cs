@@ -12,7 +12,8 @@ namespace uCookApp.Interfaces
     {
         TItem ReadFromDB(int id);
         List<TItem> ReadAllRowsFromDB();
-        bool WriteToDB(TItem obj);
+        int WriteToDB(TItem obj);
+        int UpdateRowInDB(TItem obj);
         void MarkAsDeleted(int id);
 
     }

@@ -84,28 +84,47 @@ namespace uCookApp.DbConnection
             //connection automatically disposed of
         }
 
-        public bool WriteToDB(TItem obj)
+        public int WriteToDB(TItem obj)
         {
             //This would be simplified with a stored procedure, but doing this, this way to demonstrate generics
-            string commandText = String.Format("INTSERT INTO {0} VALUES @dataString", _tableName);
+            string commandText = String.Format("INSERT INTO {0} {1};SELECT @@IDENTITY", _tableName, _parameterGenerator.GenerateParameters(obj));
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                SqlCommand command = new SqlCommand(commandText, connection);
+                
+                try
+                {
+                    connection.Open();
+                    var response = command.ExecuteScalar();
+                    return Convert.ToInt32(response);
+                }
+                catch (Exception e)
+                {
+                    return 0;
+                    //I would log exception message here (ERROR level)
+                }
+            }
+            //connection automatically disposed of
+        }
+
+        public int UpdateRowInDB(TItem obj)
+        {
+            //This would be simplified with a stored procedure, but doing this, this way to demonstrate generics
+            string commandText = String.Format("UPDATE {0} SET {1}", _tableName, _parameterGenerator.UpdateParameters(obj));
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 SqlCommand command = new SqlCommand(commandText, connection);
 
-                command.Parameters.Add("@TableName", SqlDbType.VarChar);
-                command.Parameters["@TableName"].Value = _tableName;
-
-                command.Parameters.Add("@dataString", SqlDbType.VarChar);
-                command.Parameters["@dataString"].Value = _parameterGenerator.GenerateParameters(obj);
                 try
                 {
                     connection.Open();
-                    return command.ExecuteNonQuery() > 0;
+                    return (int)command.ExecuteScalar();
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    return false;
+                    return 0;
                     //I would log exception message here (ERROR level)
                 }
             }

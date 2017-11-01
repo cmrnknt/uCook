@@ -4,7 +4,7 @@ import ToDo from './ToDo'
 
 const ToDoList = ({ todos, onToDoClick }) => (
   <ul>
-    {todos.map((todo, index) => (
+    {todos && todos.map((todo, index) => (
       <ToDo key={index} item={JSON.parse(todo)} onClick={() => onToDoClick(index)} />
     ))}
   </ul>
